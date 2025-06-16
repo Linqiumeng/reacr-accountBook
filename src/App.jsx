@@ -9,10 +9,10 @@ function App() {
 
   const initialData = loadFromLocalStorage()
 
-  const [balance, setBalance] = useState(0)
-  const [income, setIncome] = useState(0)
-  const [expenditures, setExpenditures] = useState(0)
-  const [records, setRecords] = useState([])
+  const [balance, setBalance] = useState(initialData.balance)
+  const [income, setIncome] = useState(initialData.income)
+  const [expenditures, setExpenditures] = useState(initialData.expenditures)
+  const [records, setRecords] = useState(initialData.records)
   
   const saveCurrentData = ()=>{
     const CurrentData = {
