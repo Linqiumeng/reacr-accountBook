@@ -1,0 +1,32 @@
+.sub-title{
+    text-align: center;
+    background-color: #789FAD;
+    color: white;
+    font-size: 20px;
+    padding: 15px 30px;
+    max-width: 500px;
+    font-weight: bold;
+    margin: 0 auto 30px auto; /* 添加 margin 让标题居中 */
+    border-radius: 15px;
+}
+
+header {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+header div{
+    border-color: bisque;
+    border-radius: 30px;
+    border-style: solid;
+    padding: 10px 15px;
+    background-color: bisque;
+    font-weight: bold;
+    text-align: center;
+    min-width: 150px;
+}
