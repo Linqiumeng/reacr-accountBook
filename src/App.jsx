@@ -1,16 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './Components/Header/Header.jsx'
 import TransactionForm from './Components/TransactionForm/TransactionForm.jsx'
 import RecordList from './Components/RecordList/RecordList.jsx'
+import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage } from './utils/Storage.js'
 
 
 function App() {
+
+  const initialData = loadFromLocalStorage()
 
   const [balance, setBalance] = useState(0)
   const [income, setIncome] = useState(0)
   const [expenditures, setExpenditures] = useState(0)
   const [records, setRecords] = useState([])
   
+  const saveCurrentData = ()=>{
+    const CurrentData = {
+      balance,
+      income,
+      expenditures,
+      records
+    }
+    saveToLocalStorage(CurrentData)
+  }
+
+  useEffect(()=>{
+    saveCurrentData()
+  },[balance,income,expenditures,records])
+
+
   // ** Handle new Transaction
   const addTransaction = (amount, type)=>{
     if (type === 'Income'){
@@ -78,7 +96,33 @@ function App() {
     setRecords([])
   }
 
-  
+  const resetAllData = () => {
+    const confirmMessage = `⚠️ WARNING: This will permanently delete ALL your data including:
+• All transaction records (${records.length} records)
+• Current balance: $${balance}
+• Total income: $${income}  
+• Total expenditures: $${expenditures}
+
+This action CANNOT be undone. Are you absolutely sure?`
+
+    if (!window.confirm(confirmMessage)) {
+      return
+    }
+
+    // 再次确认
+    if (!window.confirm('Last chance! This will delete EVERYTHING. Continue?')) {
+      return
+    }
+
+    // 清除localStorage和重置状态
+    clearLocalStorage()
+    setBalance(0)
+    setIncome(0)
+    setExpenditures(0)
+    setRecords([])
+
+    alert('✅ All data has been reset successfully!')
+  }
   
   return (
     <div>
@@ -92,6 +136,7 @@ function App() {
         records={records}
         onDeleteRecord={deleteRecord}
         onClearAllRecords={clearAllRecord}
+        onResetAllData={resetAllData}
       />
     </div>
   )
