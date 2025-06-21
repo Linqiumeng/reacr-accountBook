@@ -1,14 +1,39 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Components/Header/Header.jsx'
 import TransactionForm from './Components/TransactionForm/TransactionForm.jsx'
 import RecordList from './Components/RecordList/RecordList.jsx'
 import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage } from './utils/Storage.js'
 
 
+// ** 临时版本
+const Dashboard = ({ transactionProps, recordProps }) => (
+    <div>
+        <TransactionForm {...transactionProps} />
+        <RecordList {...recordProps} />
+    </div>
+)
+
+const IncomePage = ({ recordProps }) => (
+    <div>
+        <h2 style={{textAlign: 'center', margin: '20px'}}>Income Page</h2>
+        <RecordList {...recordProps} />
+    </div>
+)
+
+const ExpensePage = ({ recordProps }) => (
+    <div>
+        <h2 style={{textAlign: 'center', margin: '20px'}}>Expense Page</h2>
+        <RecordList {...recordProps} />
+    </div>
+)
+
+
 function App() {
 
   const initialData = loadFromLocalStorage()
 
+  const [currentPage, setCurrentPage] = useState('dashboard')
   const [balance, setBalance] = useState(initialData.balance)
   const [income, setIncome] = useState(initialData.income)
   const [expenditures, setExpenditures] = useState(initialData.expenditures)
@@ -124,22 +149,38 @@ This action CANNOT be undone. Are you absolutely sure?`
     alert('✅ All data has been reset successfully!')
   }
   
+  const transactionProps = { onAddTransaction: addTransaction }
+  const recordProps = { 
+      records, 
+      onDeleteRecord: deleteRecord, 
+      onClearAllRecords: clearAllRecord 
+  }
+
   return (
-    <div>
-      <Header 
-        balance={balance} 
-        income={income} 
-        expenditures={expenditures} 
-      />
-      <TransactionForm onAddTransaction={addTransaction} />
-      <RecordList 
-        records={records}
-        onDeleteRecord={deleteRecord}
-        onClearAllRecords={clearAllRecord}
-        onResetAllData={resetAllData}
-      />
-    </div>
-  )
+    <Router>
+        <div>
+            <Header 
+                balance={balance} 
+                income={income} 
+                expenditures={expenditures}
+            />
+            <Routes>
+                <Route 
+                    path="/" 
+                    element={<Dashboard transactionProps={transactionProps} recordProps={recordProps} />} 
+                />
+                <Route 
+                    path="/income" 
+                    element={<IncomePage recordProps={recordProps} />} 
+                />
+                <Route 
+                    path="/expense" 
+                    element={<ExpensePage recordProps={recordProps} />} 
+                />
+            </Routes>
+        </div>
+    </Router>
+)
 }
 
 export default App
