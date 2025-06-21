@@ -93,6 +93,9 @@ const Dashboard = ({ transactionProps, recordProps }) => {
                                             <div className="record-amount">
                                                 {record.type === 'Income' ? '+' : '-'}${record.amount}
                                             </div>
+                                            {record.description && (
+                                                <div className="record-description">{record.description}</div>
+                                            )}
                                             <div className="record-time">{record.time}</div>
                                         </div>
                                     </div>

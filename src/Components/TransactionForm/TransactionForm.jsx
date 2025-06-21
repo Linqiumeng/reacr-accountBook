@@ -6,6 +6,7 @@ const TransactionForm = ({onAddTransaction})=>{
  
     const [amount, setAmount] = useState('')
     const [category, setCategory] = useState('')
+    const [description, setDescription] = useState('')
     const [message, setMessage] = useState('')
 
 
@@ -34,13 +35,14 @@ const TransactionForm = ({onAddTransaction})=>{
             return
         }
 
-        onAddTransaction(numAmount, category)
+        onAddTransaction(numAmount, category, description.trim())
 
         setMessage(`✓ Adding ${category} Success: $${numAmount}`)
         
         // ** Restore blank
         setAmount('')
         setCategory('')
+        setDescription('')
 
         // 3秒后清除消息
         clearMessage()
@@ -63,28 +65,41 @@ const TransactionForm = ({onAddTransaction})=>{
  
     return (
     <div className="transaction-form">
-      <input 
-        className="numInput" 
-        type="number"
-        placeholder="Enter amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
+      <div className="form-row">
+        <input 
+          className="numInput" 
+          type="number"
+          placeholder="Enter amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+        
+        <select 
+          id="category" 
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Select a category</option>
+          <option value="Income">Income</option>
+          <option value="Output">Output</option>
+        </select>
+        
+        <button onClick={handleSubmit}>
+          Add Transaction
+        </button>
+      </div>
       
-      <select 
-        id="category" 
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="">Select a category</option>
-        <option value="Income">Income</option>
-        <option value="Output">Output</option>
-      </select>
-      
-      <button onClick={handleSubmit}>
-        Add Transaction
-      </button>
+      <div className="description-row">
+        <input 
+          className="descriptionInput" 
+          type="text"
+          placeholder="Description (optional)"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+      </div>
       
       {message && (
         <div className={`result ${message.includes('✓') ? 'success' : 'error'}`}>

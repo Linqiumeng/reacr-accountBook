@@ -12,7 +12,8 @@ const IncomePage = ({ recordProps }) => {
     // 搜索过滤
     const filteredRecords = incomeRecords.filter(record =>
         record.amount.toString().includes(searchTerm) ||
-        record.time.toLowerCase().includes(searchTerm.toLowerCase())
+        record.time.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (record.description && record.description.toLowerCase().includes(searchTerm.toLowerCase()))
     )
     
     // 排序
@@ -100,7 +101,7 @@ const IncomePage = ({ recordProps }) => {
                 }}>
                     <input
                         type="text"
-                        placeholder="Seach Income Record..."
+                        placeholder="Search by amount, time, or description..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         style={{
@@ -144,6 +145,9 @@ const IncomePage = ({ recordProps }) => {
                                     <div className="record-info">
                                         <div className="record-type">{record.type}</div>
                                         <div className="record-amount">+${record.amount}</div>
+                                        {record.description && (
+                                            <div className="record-description">{record.description}</div>
+                                        )}
                                         <div className="record-time">{record.time}</div>
                                     </div>
                                     <button 
