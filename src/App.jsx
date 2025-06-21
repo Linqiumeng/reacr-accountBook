@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Components/Header/Header.jsx'
 import TransactionForm from './Components/TransactionForm/TransactionForm.jsx'
 import RecordList from './Components/RecordList/RecordList.jsx'
-import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage } from './utils/Storage.js'
+import { saveToLocalStorage, loadFromLocalStorage } from './utils/Storage.js'
 import Dashboard from './Pages/Dashboard'
 import IncomePage from './Pages/IncomePage' 
 import ExpensePage from './Pages/ExpensePage.jsx'
@@ -16,13 +16,12 @@ function App() {
 
   const initialData = loadFromLocalStorage()
 
-  const [currentPage, setCurrentPage] = useState('dashboard')
   const [balance, setBalance] = useState(initialData.balance)
   const [income, setIncome] = useState(initialData.income)
   const [expenditures, setExpenditures] = useState(initialData.expenditures)
   const [records, setRecords] = useState(initialData.records)
   
-  const saveCurrentData = ()=>{
+  const saveCurrentData = useCallback(() => {
     const CurrentData = {
       balance,
       income,
@@ -30,11 +29,11 @@ function App() {
       records
     }
     saveToLocalStorage(CurrentData)
-  }
+  }, [balance, income, expenditures, records])
 
   useEffect(()=>{
     saveCurrentData()
-  },[balance,income,expenditures,records])
+  },[saveCurrentData])
 
 
   // ** Handle new Transaction
@@ -104,34 +103,6 @@ function App() {
     setRecords([])
   }
 
-  const resetAllData = () => {
-    const confirmMessage = `⚠️ WARNING: This will permanently delete ALL your data including:
-• All transaction records (${records.length} records)
-• Current balance: $${balance}
-• Total income: $${income}  
-• Total expenditures: $${expenditures}
-
-This action CANNOT be undone. Are you absolutely sure?`
-
-    if (!window.confirm(confirmMessage)) {
-      return
-    }
-
-    // 再次确认
-    if (!window.confirm('Last chance! This will delete EVERYTHING. Continue?')) {
-      return
-    }
-
-    // 清除localStorage和重置状态
-    clearLocalStorage()
-    setBalance(0)
-    setIncome(0)
-    setExpenditures(0)
-    setRecords([])
-
-    alert('✅ All data has been reset successfully!')
-  }
-  
   const transactionProps = { onAddTransaction: addTransaction }
   const recordProps = { 
       records, 

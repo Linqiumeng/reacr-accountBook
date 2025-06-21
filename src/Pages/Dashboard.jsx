@@ -86,7 +86,7 @@ const Dashboard = ({ transactionProps, recordProps }) => {
                                     <small>Add your first transaction record!</small>
                                 </div>
                             ) : (
-                                recentRecords.map((record, index) => (
+                                recentRecords.map((record) => (
                                     <div key={record.id} className={`record-item ${record.type.toLowerCase()}`}>
                                         <div className="record-info">
                                             <div className="record-type">{record.type}</div>

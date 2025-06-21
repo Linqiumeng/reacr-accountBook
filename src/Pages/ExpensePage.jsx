@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../Components/RecordList/RecordList.css'
 
 const ExpensePage = ({ recordProps }) => {
-    const { records, onDeleteRecord, onClearAllRecords } = recordProps
+    const { records, onDeleteRecord } = recordProps
     const [searchTerm, setSearchTerm] = useState('')
     const [sortBy, setSortBy] = useState('date') // date, amount
     
@@ -135,11 +135,11 @@ const ExpensePage = ({ recordProps }) => {
                     <div className="records-list">
                         {sortedRecords.length === 0 ? (
                             <div className="empty-records">
-                                <p>No Transaction Recrod</p>
+                                <p>No Transaction Record</p>
                                 <small>Start Your own Recording!</small>
                             </div>
                         ) : (
-                            sortedRecords.map((record, index) => (
+                            sortedRecords.map((record) => (
                                 <div key={record.id} className="record-item output">
                                     <div className="record-info">
                                         <div className="record-type">{record.type}</div>
