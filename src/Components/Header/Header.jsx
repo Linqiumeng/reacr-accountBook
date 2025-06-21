@@ -19,13 +19,13 @@ const Header = ({ balance, income, expenditures }) => {
             
             <nav className="navigation">
                 <Link to="/" className={`nav-btn ${currentPage === '/' ? 'active' : ''}`}>
-                    🏠 主页
+                    🏠 Dashborad
                 </Link>
                 <Link to="/income" className={`nav-btn ${currentPage === '/income' ? 'active' : ''}`}>
-                    📈 收入
+                    📈 Income
                 </Link>
                 <Link to="/expense" className={`nav-btn ${currentPage === '/expense' ? 'active' : ''}`}>
-                    📉 支出
+                    📉 Expense
                 </Link>
             </nav>
 

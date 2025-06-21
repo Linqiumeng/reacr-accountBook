@@ -4,29 +4,12 @@ import Header from './Components/Header/Header.jsx'
 import TransactionForm from './Components/TransactionForm/TransactionForm.jsx'
 import RecordList from './Components/RecordList/RecordList.jsx'
 import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage } from './utils/Storage.js'
+import Dashboard from './Pages/Dashboard'
+import IncomePage from './Pages/IncomePage' 
+import ExpensePage from './Pages/ExpensePage.jsx'
 
 
-// ** 临时版本
-const Dashboard = ({ transactionProps, recordProps }) => (
-    <div>
-        <TransactionForm {...transactionProps} />
-        <RecordList {...recordProps} />
-    </div>
-)
 
-const IncomePage = ({ recordProps }) => (
-    <div>
-        <h2 style={{textAlign: 'center', margin: '20px'}}>Income Page</h2>
-        <RecordList {...recordProps} />
-    </div>
-)
-
-const ExpensePage = ({ recordProps }) => (
-    <div>
-        <h2 style={{textAlign: 'center', margin: '20px'}}>Expense Page</h2>
-        <RecordList {...recordProps} />
-    </div>
-)
 
 
 function App() {
@@ -173,10 +156,12 @@ This action CANNOT be undone. Are you absolutely sure?`
                     path="/income" 
                     element={<IncomePage recordProps={recordProps} />} 
                 />
+                
                 <Route 
                     path="/expense" 
                     element={<ExpensePage recordProps={recordProps} />} 
                 />
+                
             </Routes>
         </div>
     </Router>
