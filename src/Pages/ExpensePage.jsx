@@ -11,8 +11,8 @@ const ExpensePage = ({ recordProps }) => {
     
     // 搜索过滤
     const filteredRecords = expenseRecords.filter(record =>
-        record.amount.toString().includes(searchTerm) ||
-        record.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+       (record.type && record.amount.toString().includes(searchTerm)) ||
+        (record.category && record.category.toLowerCase().includes(searchTerm.toLowerCase())) ||
         record.time.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (record.description && record.description.toLowerCase().includes(searchTerm.toLowerCase()))
     )
