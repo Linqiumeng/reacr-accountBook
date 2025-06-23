@@ -46,7 +46,7 @@ const Dashboard = ({ transactionProps, recordProps }) => {
                         borderRadius: '10px',
                         border: '2px solid #4CAF50'
                     }}>
-                        <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>今日收入</h3>
+                        <h3 style={{ margin: '0 0 10px 0', color: '#2e7d32' }}>Today's Income</h3>
                         <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#1b5e20', margin: 0 }}>
                             ${todayIncome}
                         </p>
@@ -57,7 +57,7 @@ const Dashboard = ({ transactionProps, recordProps }) => {
                         borderRadius: '10px',
                         border: '2px solid #FF9800'
                     }}>
-                        <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>今日支出</h3>
+                        <h3 style={{ margin: '0 0 10px 0', color: '#f57c00' }}>Today's Expenditures</h3>
                         <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#e65100', margin: 0 }}>
                             ${todayExpense}
                         </p>
@@ -68,7 +68,7 @@ const Dashboard = ({ transactionProps, recordProps }) => {
                         borderRadius: '10px',
                         border: '2px solid #2196F3'
                     }}>
-                        <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>交易笔数</h3>
+                        <h3 style={{ margin: '0 0 10px 0', color: '#1976d2' }}>Number of Transactions</h3>
                         <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#0d47a1', margin: 0 }}>
                             {todayRecords.length}
                         </p>

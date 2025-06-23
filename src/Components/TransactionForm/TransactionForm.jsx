@@ -75,6 +75,8 @@ const TransactionForm = ({onAddTransaction})=>{
           onKeyPress={handleKeyPress}
         />
         
+
+        {/* 选择收入或支出 */}
         <select 
           id="category" 
           value={category}
