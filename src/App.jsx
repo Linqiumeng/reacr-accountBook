@@ -37,7 +37,7 @@ function App() {
 
 
   // ** Handle new Transaction
-  const addTransaction = (amount, type, description = '')=>{
+  const addTransaction = (amount, type, category, description = '')=>{
     if (type === 'Income'){
       setBalance(prev => prev + amount)
       setIncome(prev => prev + amount)
@@ -46,19 +46,20 @@ function App() {
       setExpenditures(prev => prev + amount)
     }
 
-  const newRecord = {
-    type: type,
-    amount: amount,
-    description: description,
-    time: new Date().toLocaleString('en-US',{
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    }),
-    id: Date.now()
-  }
+    const newRecord = {
+      type: type,
+      amount: amount,
+      category: category,
+      description: description,
+      time: new Date().toLocaleString('en-US',{
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+      }),
+      id: Date.now()
+    }
 
   //** Add new Record
   setRecords(prev => [newRecord, ...prev])

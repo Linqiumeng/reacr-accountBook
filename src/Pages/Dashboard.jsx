@@ -90,6 +90,7 @@ const Dashboard = ({ transactionProps, recordProps }) => {
                                     <div key={record.id} className={`record-item ${record.type.toLowerCase()}`}>
                                         <div className="record-info">
                                             <div className="record-type">{record.type}</div>
+                                            <div className="record-category">{record.category}</div>
                                             <div className="record-amount">
                                                 {record.type === 'Income' ? '+' : '-'}${record.amount}
                                             </div>

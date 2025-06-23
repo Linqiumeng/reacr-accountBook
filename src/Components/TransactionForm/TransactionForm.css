@@ -19,6 +19,53 @@
   max-width: 600px;
 }
 
+.categoryInput {
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  background-color: #fafafa;
+}
+
+.categoryInput:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  background-color: white;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  color: #000000;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .numInput {
   flex: 1;
   min-width: 150px;
@@ -35,6 +82,24 @@
   outline: none;
   border-color: #4CAF50;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+#type {
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+#type:focus {
+  outline: none;
+  border-color: #4CAF50;
 }
 
 #category {
@@ -75,6 +140,29 @@
 }
 
 .transaction-form button:active {
+  transform: translateY(0);
+}
+
+.transaction-form .delete-btn {
+  margin-left: 10px;
+  background: linear-gradient(135deg, #e03529, #e03529);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+  white-space: nowrap;
+}
+
+.transaction-form .delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+}
+
+.transaction-form .delete-btn:active {
   transform: translateY(0);
 }
 
