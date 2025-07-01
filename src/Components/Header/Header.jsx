@@ -30,9 +30,9 @@ const Header = ({ balance, income, expenditures }) => {
             </nav>
 
             <header>
-                <div id="balance">Current Balance: {balance}</div>
-                <div id="income">Income: {income}</div>
-                <div id="expenditures">Expenditures: {expenditures}</div>
+                <div id="balance">Current Balance: {balance.toFixed(2)}</div>
+                <div id="income">Income: {income.toFixed(2)}</div>
+                <div id="expenditures">Expenditures: {expenditures.toFixed(2)}</div>
             </header>
         </div>
     );

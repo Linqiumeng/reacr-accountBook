@@ -13,7 +13,7 @@ const ExpensePage = ({ recordProps }) => {
     const filteredRecords = expenseRecords.filter(record =>
        (record.type && record.amount.toString().includes(searchTerm)) ||
         (record.category && record.category.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        record.time.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (record.time && record.time.toLowerCase().includes(searchTerm.toLowerCase())) ||
         (record.description && record.description.toLowerCase().includes(searchTerm.toLowerCase()))
     )
     
