@@ -78,3 +78,56 @@ header div{
         width: 200px;
     }
 }
+/* 用户区域样式 */
+.user-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+}
+
+.welcome-message {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.logout-button {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+    background: linear-gradient(135deg, #ee5a24, #c44569);
+    transform: translateY(-1px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .user-section {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .welcome-message {
+        font-size: 0.8rem;
+    }
+    
+    .logout-button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
