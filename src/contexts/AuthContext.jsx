@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // API base URL - change this to your backend URL
-  const API_URL = 'http://localhost:5001/api';
+  const API_URL = 'https://account-book-bakcend.onrender.com';
 
   // Check if user is authenticated on app load
   useEffect(() => {
